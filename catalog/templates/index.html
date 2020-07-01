@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}HandyBar?{% endblock %}
+
+{% block content %}
+<h1>Uploads:</h1>
+<br />
+<ul>
+    {% for upload in object_list %}
+        <li><img width="20%" height="20%" src="{{ upload.scan.url }}" /></li>
+    {% empty %}
+        <h3>No images have been uploaded!</h3>
+    {% endfor %}
+</ul>
+<br />
+<p>Want to upload a scan? <a href={% url 'scan' %}>Scan here!</a></p>
+{% endblock %}

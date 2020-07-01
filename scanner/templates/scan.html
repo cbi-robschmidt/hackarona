@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Scan Bottle{% endblock %}
+
+{% block content %}
+<h1>Please scan your bottle...</h1>
+<br />
+<form action={% url 'scan' %} method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input class="button" type="submit" value="Scan!" />
+</form>
+{% endblock %}
