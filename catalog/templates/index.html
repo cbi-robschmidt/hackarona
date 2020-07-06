@@ -8,7 +8,11 @@
 <br />
 <ul>
     {% for upload in object_list %}
-        <li><img width="20%" height="20%" src="{{ upload.scan.url }}" /></li>
+        <li>
+            <a href={% url 'results' pk=upload.scan.uuid %}>
+                <img width="20%" height="20%" src="{{ upload.scan.url }}" />
+            </a>
+        </li>
     {% empty %}
         <h3>No images have been uploaded!</h3>
     {% endfor %}
