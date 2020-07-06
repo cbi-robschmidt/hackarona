@@ -3,16 +3,6 @@ import uuid
 import os
 
 
-def change_name(instance, filename):
-    upload_to = 'static/scans'
-    _, ext = os.path.splitext(filename)
-    if instance.pk:
-        filename = '{}{}'.format(instance.pk, ext)
-    else:
-        filename = '{}{}'.format(uuid.uuid4().hex, ext)
-
-    return os.path.join(upload_to, filename)
-
 # Create your models here.
 class ScanPhoto(models.Model):
     uuid = models.UUIDField(
