@@ -21,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # Read secret key from a file instead of hardcoding it!
-with open('/etc/hackarona/secret_key') as f:
+with open('/etc/hackarona/secret_key', 'r') as f:
     SECRET_KEY = f.read().strip().rstrip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -131,5 +132,13 @@ STATICFILES_DIR = [
     os.path.join(BASE_DIR, 'static')
 ]
 
-MEDIA_URL = 'scans/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'scans')
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+with open('/etc/hackarona/aws_access_id', 'r') as f:
+    AWS_ACCESS_KEY_ID = f.read().strip().rstrip()
+with open('/etc/hackarona/aws_secret_key', 'r') as f:
+    AWS_SECRET_ACCESS_KEY = f.read().strip().rstrip()
+AWS_STORAGE_BUCKET_NAME = 'hackarona-product-images'
+AWS_S3_FILE_OVERWRITE = False
+AWS_S3_REGION_NAME = 'us-east-1'
+AWS_DEFAULT_ACL = None

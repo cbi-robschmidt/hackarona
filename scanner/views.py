@@ -9,8 +9,8 @@ def scan_form_view(request):
     if request.method == 'POST':
         form = UploadScanForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            return redirect('index')
+            instance = form.save()
+            return redirect('results', pk=str(instance.uuid))
     else:
         form = UploadScanForm()
         return render(request, 'scan.html', {

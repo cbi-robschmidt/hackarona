@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}Results{% endblock %}
+
+{% block content %}
+<h1>{{ object.uuid }}</h1>
+<br />
+<img src="{{ object.scan.url }}" width="25%" height="25%" />
+<br />
+Creation time: {{ object.created_at | date}}
+{% endblock %}
