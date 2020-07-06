@@ -7,5 +7,13 @@
 <br />
 <img src="{{ object.scan.url }}" width="25%" height="25%" />
 <br />
+<table>
+    {% for w in words %}
+    <tr>
+        <td>{{ w }}</td>
+    </tr>
+    {% endfor %}
+</table>
+<br />
 Creation time: {{ object.created_at | date}}
 {% endblock %}
