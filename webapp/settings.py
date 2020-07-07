@@ -21,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # Read secret key from a file instead of hardcoding it!
-with open('/etc/hackarona/secret_key', 'r') as f:
+with open(os.path.join(BASE_DIR, 'secret_key'), 'r') as f:
     SECRET_KEY = f.read().strip().rstrip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -134,9 +134,9 @@ STATICFILES_DIR = [
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-with open('/etc/hackarona/aws_access_id', 'r') as f:
+with open(os.path.join(BASE_DIR, 'aws_access_id'), 'r') as f:
     AWS_ACCESS_KEY_ID = f.read().strip().rstrip()
-with open('/etc/hackarona/aws_secret_key', 'r') as f:
+with open(os.path.join(BASE_DIR, 'aws_secret_key'), 'r') as f:
     AWS_SECRET_ACCESS_KEY = f.read().strip().rstrip()
 AWS_STORAGE_BUCKET_NAME = 'hackarona-product-images'
 AWS_S3_FILE_OVERWRITE = False

@@ -4,3 +4,6 @@ venv/
 *.pyc
 __pycache__/
 scans/
+aws_access_id
+aws_secret_key
+secret_key

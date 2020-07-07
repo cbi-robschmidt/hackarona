@@ -9,7 +9,7 @@
 <ul>
     {% for upload in object_list %}
         <li>
-            <a href={% url 'results' pk=upload.scan.uuid %}>
+            <a href="/results/{{ upload.uuid }}">
                 <img width="20%" height="20%" src="{{ upload.scan.url }}" />
             </a>
         </li>
