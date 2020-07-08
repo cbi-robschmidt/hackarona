@@ -8,6 +8,6 @@
 <form action={% url 'scan' %} method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
-    <input class="button" type="submit" value="Scan!" />
+    <input class="btn btn-primary button" type="submit" value="Scan!" />
 </form>
 {% endblock %}
