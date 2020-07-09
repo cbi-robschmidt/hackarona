@@ -31,6 +31,7 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     '54.87.180.153',
     'ec2-54-87-180-153.compute-1.amazonaws.com',
+    'handybar.cbrands-poc.com',
 ]
 
 
