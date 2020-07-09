@@ -6,6 +6,7 @@ h1 {
 }
 
 h1, h2 {
+    text-align: left;
     font-weight: 400;
     letter-spacing: .5px;
 }
@@ -130,8 +131,16 @@ ul > li {
     /* border: 1px solid #9b9b9b; */
 
 }
+
+.icon {
+    width: 80px;
+    height: 50px;
+}
+
 body {
     background-color: #fafafa;
+    font-family: Roboto,Arial,sans-serif;
+    color: #586075;
 }
 
 .wrapper {
@@ -139,9 +148,29 @@ body {
     flex-direction: column;
 }
 
+.navbar {
+    position: fixed;
+    background-color: #eaecf0;
+    padding: 15px;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    
+}
+
+.navbar > * {
+    margin-right: 50px;
+    /* background-color: black; */
+}
+
 .content {
-    margin-bottom: 150px;
-    /* background-color: red; */
+    margin: 80px 0px 40px 0px;
+    text-align: center;
 }
 
 .footer {
