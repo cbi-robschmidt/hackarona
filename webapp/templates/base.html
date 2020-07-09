@@ -14,7 +14,10 @@
     <body>
         <div class="wrapper">
             <div class="navbar">
-                <img class="icon" src="{%static "images/HackaronaLogo.png" %}">
+                <a href="{% url 'index' %}">
+                    <img class="icon" alt="Hackarona Logo, redirect to homepage" src="{%static "images/HackaronaLogo.png" %}">
+                </a>
+                <a href="{% url 'scan' %}"> Scan </a>
             </div>
             <div class="content">
                 {% block content %}
