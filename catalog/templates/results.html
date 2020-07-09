@@ -1,19 +1,21 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Results{% endblock %}
+
+{% block import %}  <link rel="stylesheet" href="{% static "catalog_styling/results.css" %}" /> {% endblock %}
 
 {% block content %}
 <h1>{{ object.uuid }}</h1>
 <br />
-<img src="{{ object.scan.url }}" width="25%" height="25%" />
+<img src="{{ object.scan.url }}" width="75%" />
+<h2>Detected Words: </h2>
 <br />
-<table>
+<div class="gridbox">
     {% for w in words %}
-    <tr>
-        <td>{{ w }}</td>
-    </tr>
+    <div>{{ w }}</div>
     {% endfor %}
-</table>
+</div>
 <br />
 Creation time: {{ object.created_at | date}}
 {% endblock %}

@@ -6,12 +6,16 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>{% block title %}{% endblock %}</title>
-        <link rel="icon" href="https://d8ejoa1fys2rk.cloudfront.net/5.0.5/includes/img/icons/cbrands.ico" type="image/icon type">
+        <link rel="icon" href="{% static "images/HackaronaLogo.png" %}" type="image/icon type">
         <link rel="stylesheet" href="{% static "base_styling/base.css" %}" />
+        {% block import %} {% endblock %}
         
     </head>
     <body>
         <div class="wrapper">
+            <div class="navbar">
+                <img class="icon" src="{%static "images/HackaronaLogo.png" %}">
+            </div>
             <div class="content">
                 {% block content %}
                 {% endblock %}

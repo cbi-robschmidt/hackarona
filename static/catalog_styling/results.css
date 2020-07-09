@@ -1,0 +1,13 @@
+.gridbox {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.gridbox > div {
+    border: 3px solid #bbceff;
+    background-color: #fde673;
+    padding: 20px;
+}
