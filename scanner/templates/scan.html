@@ -1,13 +1,25 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Scan Bottle{% endblock %}
+{% block import %}  
+    <link rel="stylesheet" href="{% static "scan_styling/scan.css" %}" /> 
+{% endblock %}
 
 {% block content %}
 <h1>Please scan your bottle...</h1>
 <br />
-<form action={% url 'scan' %} method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input class="btn btn-primary button" type="submit" value="Scan!" />
-</form>
+<div class="form-box">
+    <form action={% url 'scan' %} method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-row">
+            {{ form }}
+            <label for="id_scan"> Scan Bottle </label>
+        </div>
+        <div class="form-row">
+            <input class="btn btn-primary" type="submit" value="Find Recipes!" />
+        </div>
+    </form>
+</div>
+<script src="{% static "scan_styling/scanner.js" %}"></script>
 {% endblock %}
