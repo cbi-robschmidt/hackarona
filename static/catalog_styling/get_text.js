@@ -18,8 +18,3 @@ $(document).ready(function gatherWords() {
         });
     });
 });
-
-function gatherRecipes() {
-    const recipeContainer = document.getElementById("recipe-container");
-    const recipeStatus = document.getElementById("recipe-status");
-}
