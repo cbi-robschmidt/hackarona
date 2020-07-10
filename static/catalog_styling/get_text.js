@@ -1,34 +1,25 @@
-    const URL = 'https://0y0h6tom4a.execute-api.us-east-1.amazonaws.com/get-text';
+const GET_TEXT_URL = 'https://0y0h6tom4a.execute-api.us-east-1.amazonaws.com/get-text';
+const GET_RECIPES_URL = 'https://0y0h6tom4a.execute-api.us-east-1.amazonaws.com/getRecipe';
 
-    function gatherWords() {
-        const imageNameHeader = document.querySelector('.obj-name');
-        const wordContainer = document.querySelector(".gridbox");
+$(document).ready(function gatherWords() {
+    const imageNameHeader = $('.obj-name');
+    const wordContainer = $("#word-container");
+    const loadingText = $("#words-loading");
 
-        if(!imageNameHeader) {
-            return;
-        }
-        const imageUrl = URL + "?filename=" + imageNameHeader.textContent.trim();
-        
-        const xhttp = new XMLHttpRequest();
-        
-        xhttp.onreadystatechange = function() {
-            if(this.readyState == 4 && this.status == 200) {
-                let response = xhttp.responseText;
-                if(response) {
-                    response = response.substring(1, response.length - 1); //Trim '[]' from string
-                    let words = response.split(", ");
-                    words.forEach((ele)=>{
-                        console.log(ele);
-                        let word = ele.substring(1, ele.length - 1);    //Trim quotes left around each word
-                        wordContainer.insertAdjacentHTML("afterbegin", `<div>${word}</div>`);
-                    })
-                }
-            }
-        };
+    const imageUrl = GET_TEXT_URL + "?filename=" + imageNameHeader.text().trim();
+    console.log('Finding words with url ' + imageUrl);
+    $.get(imageUrl, function(data, status) {
+        loadingText.hide();
 
-        xhttp.open("Get", imageUrl, true);
-        xhttp.send();
+        console.log(data);
+        resp = JSON.parse(data);
+        $.each(resp['words'], function(index, value) {
+            wordContainer.append(`<div>${value}</div`);
+        });
+    });
+});
 
-    }
-
-    document.addEventListener("load", gatherWords());
+function gatherRecipes() {
+    const recipeContainer = document.getElementById("recipe-container");
+    const recipeStatus = document.getElementById("recipe-status");
+}
