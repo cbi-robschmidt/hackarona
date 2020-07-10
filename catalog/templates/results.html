@@ -17,5 +17,17 @@
     {% endfor %}
 </div>
 <br />
+<div class="gridbox">
+    {% for recipe in recipes %}
+    <a href="{{ recipe.webImage }}">
+        <div>
+            <h2>{{ recipe.name }}</h2>
+            <br />
+            <img src="{{ recipe.webImage }}" />
+        </div>
+    </a>
+    {% endfor %}
+</div>
+<br />
 Creation time: {{ object.created_at | date}}
 {% endblock %}
