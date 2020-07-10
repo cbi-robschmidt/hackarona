@@ -26,9 +26,10 @@ $(document).ready(function gatherWords() {
             contentType: 'application/json',
             data: JSON.stringify({query: resp['words']}), 
             success: function(data) {
-                recipeStatus.hide();
                 recipes = JSON.parse("{\"body\":"+data.body+"}");
-                console.log(recipes);
+                console.log(recipes.body);
+                if(recipes.body.length != 0)
+                    recipeStatus.hide();
                 $.each(recipes.body, function(index, value) {
                     recipeContainer.append(`<a href=${value['webImage']}><h2>${value['name']}</h2><br /><img src=${value['webImage']} /></a>`);
                 });
