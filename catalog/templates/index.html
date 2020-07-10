@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}HandyBar?{% endblock %}
+{% block title %}HandyBar{% endblock %}
 
 {% block content %}
 <h1>Uploads:</h1>
@@ -18,5 +18,5 @@
     {% endfor %}
 </ul>
 <br />
-<p>Want to upload a scan? <a href={% url 'scan' %}>Scan here!</a></p>
+<p>Want to upload a scan? <a class="cbi-link" href={% url 'scan' %}>Scan here!</a></p>
 {% endblock %}
