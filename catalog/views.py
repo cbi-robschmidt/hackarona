@@ -30,10 +30,14 @@ class ResultsView(DetailView):
         resp = requests.get('https://0y0h6tom4a.execute-api.us-east-1.amazonaws.com/get-text?filename={}'.format(imagename))
         textract_list = resp.json()
         context['words'] = textract_list
+<<<<<<< HEAD
 
         # use first textract word to get recipe name
         recipe_query_dict = {'query': textract_list}
         resp2 = requests.post('https://0y0h6tom4a.execute-api.us-east-1.amazonaws.com/getRecipe', json={ 'query': context['words'] }).json()['body']
         context['recipes'] = json.loads(resp2)
 
+=======
+        resp2 = requests.get('https://0y0h6tom4a.execute-api.us-east-1.amazonaws.com/getRecipe?name={' + context['words'] + '}')
+>>>>>>> fbaa73233f3d7bcbdb32ee875f62475ffe0bcef6
         return context
