@@ -25,5 +25,5 @@ class ResultsView(DetailView):
         resp = requests.get('https://0y0h6tom4a.execute-api.us-east-1.amazonaws.com/get-text?filename={}'.format(imagename))
         textract_list = resp.json()
         context['words'] = textract_list
-        resp2 = requests.get('https://0y0h6tom4a.execute-api.us-east-1.amazonaws.com/getRecipe?name={' + context['words'] + '}'i)
+        resp2 = requests.get('https://0y0h6tom4a.execute-api.us-east-1.amazonaws.com/getRecipe?name={' + context['words'] + '}')
         return context
