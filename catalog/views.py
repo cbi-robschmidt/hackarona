@@ -17,12 +17,3 @@ class IndexView(ListView):
 class ResultsView(DetailView):
     model = ScanPhoto
     template_name = 'results.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(ResultsView, self).get_context_data(**kwargs)
-        # scan_instance = ScanPhoto.objects.get(uuid=self.kwargs['pk']).scan
-        # imagename = os.path.basename(scan_instance.name)
-        # resp = requests.get('https://0y0h6tom4a.execute-api.us-east-1.amazonaws.com/get-text?filename={}'.format(imagename))
-        # textract_list = resp.json()
-        # context['words'] = textract_list
-        return context
