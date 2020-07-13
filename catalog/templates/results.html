@@ -3,31 +3,26 @@
 
 {% block title %}Results{% endblock %}
 
-{% block import %}  <link rel="stylesheet" href="{% static "catalog_styling/results.css" %}" /> {% endblock %}
+{% block import %}  
+    <link rel="stylesheet" href="{% static "catalog_styling/results.css" %}" />
+{% endblock %}
 
 {% block content %}
-<h1>{{ object.uuid }}</h1>
-<br />
-<img src="{{ object.scan.url }}" width="75%" />
-<h2>Detected Words: </h2>
-<br />
-<div class="gridbox">
-    {% for w in words %}
-    <div>{{ w }}</div>
-    {% endfor %}
-</div>
-<br />
-<div class="gridbox">
-    {% for recipe in recipes %}
-    <a href="{{ recipe.webImage }}">
-        <div>
-            <h2>{{ recipe.name }}</h2>
-            <br />
-            <img src="{{ recipe.webImage }}" />
-        </div>
-    </a>
-    {% endfor %}
-</div>
-<br />
-Creation time: {{ object.created_at | date}}
+    <h1 class="obj-name">{{ object.scan.name }}</h1>
+    <br />
+    <img src="{{ object.scan.url }}" width="30%" />
+    <h2>Detected Words: </h2>
+    <br />
+    <div id="word-container" class="gridbox">
+        {% comment %} Where get_text.js will fill all the words into {% endcomment %}
+        <h3 id="words-loading"><i>Please wait while the image is scanned...</i></h3>
+    </div>
+    <br />
+    <div id="recipe-container" class="gridbox">
+        {% comment %} Where get_text.js will fill all recipes {% endcomment %}
+        <h3 id="recipe-status">No recipes found! Try a different product?</h3>
+    </div>
+    Creation time: {{ object.created_at | date}}
+
+    <script src="{% static "/catalog_styling/get_text.js" %}"></script>
 {% endblock %}
