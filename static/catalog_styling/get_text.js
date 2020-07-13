@@ -14,9 +14,14 @@ $(document).ready(function gatherWords() {
 
         console.log(data);
         resp = JSON.parse(data);
-        $.each(resp['words'], function(index, value) {
-            wordContainer.append(`<div>${value}</div`);
-        });
+        var words = [];
+        for (var i = 0; i < resp['words'].length; i++) {
+            const value = resp['words'][i];
+            if (value.score > 70 && value.word.length > 3) {
+                wordContainer.append(`<div>${value.word}</div`);
+                words.push(value.word);
+            }
+        }
 
         const recipeContainer = $('#recipe-container');
         const recipeStatus = $('#recipe-status');
@@ -24,7 +29,7 @@ $(document).ready(function gatherWords() {
             url: GET_RECIPES_URL, 
             type: "POST",
             contentType: 'application/json',
-            data: JSON.stringify({query: resp['words']}), 
+            data: JSON.stringify({query: words}), 
             success: function(data) {
                 recipes = JSON.parse("{\"body\":"+data.body+"}");
                 console.log(recipes.body);
