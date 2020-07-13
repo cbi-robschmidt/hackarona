@@ -175,7 +175,7 @@ body {
 .navbar > * {
     margin-right: 50px;
     text-align: center;
-    padding: 10px 5px;
+    padding: 5px;
 }
 
 .link-list {
@@ -202,7 +202,8 @@ body {
     background-color: #16335e;
     color: white;
     position: fixed;
-    padding: 15px;
+    padding: 8px;
+    font-size: 12px;
     bottom: 0px;
     left: 0px;
     width: 100%;
