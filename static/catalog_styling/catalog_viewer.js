@@ -1,6 +1,26 @@
-$(document).ready(function getRecipes() {
-    $.get( "https://api.cbrands.com/api/1.0/recipes", { apikey: "jet", dateModified: "1900-1-1T00:00:00Z", numberOfRecords: "6", page: "1" } )
-    .done(function( data ) {
-        console.log( "Data Loaded: " + data );
-  });
-});
+const GET_RECIPES_URL = 'https://0y0h6tom4a.execute-api.us-east-1.amazonaws.com/getRecipe';
+let page = 1;
+
+$(document).ready(getRecipes);
+
+function getRecipes() {
+    const catalog = $(".catalog");
+
+    $.ajax({
+        url: GET_RECIPES_URL, 
+        type: "POST",
+        contentType: 'application/json',
+        data: JSON.stringify({query: [""], page}), 
+        success: function(data) {
+            const recipes = JSON.parse("{\"body\":"+data.body+"}");
+            $.each(recipes.body, function(index, value) {
+                catalog.append(`<a class="catalog-item" href=${value['webImage']}><h3>${value['name']}</h3><br /><img src=${value['webImage']} /></a>`);
+            });
+        }
+    });
+}
+
+function loadMore() {
+    page += 1;
+    getRecipes();
+}
