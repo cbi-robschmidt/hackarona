@@ -1,0 +1,21 @@
+.catalog {
+    /* background-color: #29cb97; */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-content: space-around;
+    padding: 10px;
+}
+
+.catalog-item {
+    background-color: #65d6d8;
+    transition: all 0.2s;
+    box-shadow: 6px 4px 10px 3px #22222288;
+    margin: 5px;
+}
+
+.catalog-item:focus, .catalog-item:hover {
+    transform: scale(1.1, 1.1);
+    box-shadow: 6px 4px 10px 8px #22222288;
+} 

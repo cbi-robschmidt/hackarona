@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Catalog{% endblock %}
+
+{% block import %} <link rel="stylesheet" href="{% static "catalog_styling/catalog.css" %}"> {% endblock %}
+
+{% block content %} 
+    <h1> All Recipes: </h1>
+
+    <div class="catalog"> 
+        <a class="catalog-item" href="https://picsum.photos/250"> 
+            <h3> Sample Item 1</h3> 
+            <img width="250" height="250" src="https://picsum.photos/250">
+        </a>
+        <a class="catalog-item" href="https://picsum.photos/250"> 
+            <h3> Sample Item 2</h3>
+            <img width="250" height="250" src="https://picsum.photos/250">
+        </a>
+        <a class="catalog-item" href="https://picsum.photos/250"> 
+            <h3> Sample Item 3</h3>
+            <img width="250" height="250" src="https://picsum.photos/250">
+        </a>
+    </div>
+
+    {% comment %} <a href=${value['webImage']}>
+        <h2>${value['name']}</h2>
+        <br />
+        <img src=${value['webImage']} />
+    </a> {% endcomment %}
+
+    <script src="{% static "catalog_styling/catalog_viewer.js" %}"></script>
+{% endblock %}

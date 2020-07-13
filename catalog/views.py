@@ -17,3 +17,6 @@ class IndexView(ListView):
 class ResultsView(DetailView):
     model = ScanPhoto
     template_name = 'results.html'
+
+def get_catalog(request):
+    return render(request, 'catalog.html')

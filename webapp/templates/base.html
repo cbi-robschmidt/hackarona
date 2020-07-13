@@ -18,7 +18,10 @@
                 <a href="{% url 'index' %}">
                     <img class="icon" alt="Hackarona Logo, redirect to homepage" src="{%static "images/HackaronaLogo.png" %}">
                 </a>
-                <a class="cbi-link" href="{% url 'scan' %}"> Scan </a>
+                <div class="link-list"> 
+                    <a class="cbi-link" href="{% url 'scan' %}"> Scan </a>
+                    <a class="cbi-link" href="{% url 'catalog' %}"> Browse </a>
+                </div>
             </div>
             <div class="content">
                 {% block content %}
