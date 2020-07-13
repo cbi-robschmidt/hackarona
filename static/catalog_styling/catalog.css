@@ -18,4 +18,9 @@
 .catalog-item:focus, .catalog-item:hover {
     transform: scale(1.1, 1.1);
     box-shadow: 6px 4px 10px 8px #22222288;
-} 
+}
+
+.catalog-item > img {
+    width: 250;
+    height: 250;
+}
