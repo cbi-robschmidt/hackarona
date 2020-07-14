@@ -47,6 +47,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'storages',
+    'django_simple_bulma',
+]
+
+STATIC_ROOT = 'static/'
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+
+    # custom SimpleBulma staticfiles finder
+    'django_simple_bulma.finders.SimpleBulmaFinder',
 ]
 
 MIDDLEWARE = [
@@ -130,9 +140,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static")
-]
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
@@ -144,3 +151,15 @@ AWS_STORAGE_BUCKET_NAME = 'hackarona-product-images'
 AWS_S3_FILE_OVERWRITE = False
 AWS_S3_REGION_NAME = 'us-east-1'
 AWS_DEFAULT_ACL = None
+
+BULMA_SETTINGS = {
+    "extensions": [
+        "bulma-navbar-burger",
+        "bulma-notifications",
+        "bulma-fileupload",
+    ],
+    "variables": {
+        "primary": "#0076bf",
+        "info": "#DEC107"
+    }
+}

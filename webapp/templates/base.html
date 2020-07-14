@@ -6,29 +6,49 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>{% block title %}{% endblock %}</title>
-        <link rel="icon" href="{% static "images/HackaronaLogo.png" %}" type="image/icon type">
-        <link rel="stylesheet" href="{% static "base_styling/base.css" %}" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="{% static "base_styling/navbar_scroll.js" %}"></script>
+        <link rel="icon" href="{% static "images/HackaronaLogo.png" %}" type="image/icon type">
+        <script src="{% static "js/navbar_scroll.js" %}"></script>
+        {% load django_simple_bulma %}
+        {% bulma %}
+        {% font_awesome %}
         {% block import %} {% endblock %}
-        
     </head>
     <body>
-        <div class="wrapper">
-            <div class="navbar">
-                <a href="{% url 'catalog' %}">
-                    <img class="icon" alt="Hackarona Logo, redirect to homepage" src="{%static "images/HackaronaLogo.png" %}">
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <a class="navbar-item is-large" href="{% url 'catalog' %}">
+                    <img width="200%" height="200%" alt="Hackarona Logo, redirect to homepage" src="{%static "images/HackaronaLogo.png" %}">
                 </a>
-                <div class="link-list"> 
-                    <a class="cbi-link" href="{% url 'scan' %}"> Scan </a>
-                    <a class="cbi-link" href="{% url 'catalog' %}"> Browse </a>
+
+                <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarContent">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+            <div id="navbarContent" class="navbar-menu"> 
+                <div class="navbar-start">
+                </div>
+
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <div class="buttons">
+                            <a class="button is-secondary" href="{% url 'catalog' %}"> Browse </a>
+                            <a class="button is-primary" href="{% url 'scan' %}"> Scan </a>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="content">
+        </nav>
+        <section class="section">
+            <div class="container">
                 {% block content %}
                 {% endblock %}
             </div>
-            <div class="footer">2020 Constellation Brands</div>
-        </div>
+        </section>
+        <section class="footer">
+            <div class="container has-text-centered">2020 Constellation Brands</div>
+        </section>
     </body>
 </html>

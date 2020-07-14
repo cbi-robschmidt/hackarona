@@ -14,9 +14,12 @@ import json
 def scan_form_view(request):
     if request.method == 'POST':
         form = UploadScanForm(request.POST, request.FILES)
+        print(form)
         if form.is_valid():
             instance = form.save()
             return redirect('results', pk=str(instance.uuid))
+        else:
+            return redirect('scan')
     else:
         form = UploadScanForm()
         return render(request, 'scan.html', {
@@ -71,7 +74,6 @@ class GetScanData(View):
         # send the list of words to the recipe AWS Lambda function
         getrecipe_response = requests.post(recipes_url, json={'query': words})
         getrecipe_response = getrecipe_response.json()
-        print(getrecipe_response)
         recipes = []
         # append each entry as an element in a list
         for entry in getrecipe_response:

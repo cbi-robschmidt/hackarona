@@ -3,27 +3,45 @@
 
 {% block title %}Catalog{% endblock %}
 
-{% block import %} <link rel="stylesheet" href="{% static "catalog_styling/catalog.css" %}"> {% endblock %}
 
 {% block content %} 
-    <div class="header">
-        <h1> All Recipes: {{ url }}</h1>
+    <div class="level">
+        <div class="level-left">
+            <h1 class="title">All Recipes</h1>
+        </div>
 
-        <form class="searchBar" method="POST" action="{% url 'catalog' %}">
-            {% csrf_token %}
-            <input id="query" name="query" type="text" placeholder="Search...">
-            <input class="btn btn-primary" type="submit" value="Go!"/>
-        </form>
+        <div class="level-right">
+            <form class="searchBar" method="POST" action="{% url 'catalog' %}">
+                {% csrf_token %}
+                <div class="field has-addons">
+                    <div class="control">
+                        <input class="input" id="query" name="query" type="text" placeholder="Search...">
+                    </div>
+                    <div class="control">
+                        <input class="button is-primary" type="submit" value="Go!"/>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 
     {% for datum in data_dump %}
         {{ datum }}
     {% endfor %}
 
-    <div class="catalog"> 
+    <div id="recipe-catalog" class="columns is-centered is-mobile"> 
         {% comment %} Catalog Items Fill into here {% endcomment %}
+        <div id="col1" class="column"></div>
+        <div id="col2" class="column"></div>
+        <div id="col3" class="column"></div>
+        <div id="col4" class="column"></div>
     </div>
-    <button id="moreButton" class="btn-secondary" onclick="loadMore()">More</button>
+    <h3 id="loadingrecipes" class="title has-text-centered has-text-primary">Loading recipes...</h3>
+    <button id="moreButton" style="display: none" class="button is-info is-fullwidth is-medium" onclick="loadMore()">More</button>
+    <div id="endofline" style="display: none" class="notification is-primary has-text-weight-bold has-text-centered" aria-hidden="true">
+        <button class="delete"></button>
+        You've hit the end!
+    </div>
 
-    <script src="{% static "catalog_styling/catalog_viewer.js" %}"></script>
+    <script src="{% static "js/catalog_viewer.js" %}"></script>
 {% endblock %}

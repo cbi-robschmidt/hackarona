@@ -2,24 +2,34 @@
 {% load static %}
 
 {% block title %}Scan Bottle{% endblock %}
-{% block import %}  
-    <link rel="stylesheet" href="{% static "scan_styling/scan.css" %}" /> 
-{% endblock %}
 
 {% block content %}
-<h1>Please scan your bottle...</h1>
-<br />
-<div class="form-box">
-    <form action={% url 'scan' %} method="POST" enctype="multipart/form-data">
+<div class="columns">
+    <form class="column is-half is-offset-one-quarter" action={% url 'scan' %} method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        <div class="form-row">
-            {{ form }}
-            <label for="id_scan"> Scan Bottle </label>
+        {{ form.non_field_errors }}
+        <div class="field">
+            {{ form.scan.errors }}
+            <div class="file is-primary has-name is-boxed is-large has-text-centered is-fullwidth">
+                <label class="file-label">
+                    <input type="file" class="file-input" accept="image/*" name="scan" id="{{ form.scan.id_for_label }}" required>
+                    <span class="file-cta">
+                        <span class="file-icon">
+                            <i class="fas fa-upload"></i>
+                        </span>
+                        <span class="file-label">
+                            Scan a Bottle!
+                        </span>
+                    </span>
+                    <span class="file-name"></span>
+                </label>
+            </div>
         </div>
-        <div class="form-row">
-            <input class="btn btn-primary" type="submit" value="Find Recipes!" />
+        <div class="field">
+            <div class="control has-text-centered">
+                <input class="button is-primary" type="submit" value="Find Recipes!" />
+            </div>
         </div>
     </form>
 </div>
-<script src="{% static "scan_styling/scanner.js" %}"></script>
 {% endblock %}
