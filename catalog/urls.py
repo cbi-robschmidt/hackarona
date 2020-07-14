@@ -1,8 +1,7 @@
 from django.urls import path
-from .views import IndexView, ResultsView, get_catalog
+from .views import ResultsView, CatalogView
 
 urlpatterns = [
-    path('', IndexView.as_view(), name='index'),
+    path('', CatalogView.as_view(), name='catalog'),
     path('results/<uuid:pk>/', ResultsView.as_view(), name='results'),
-    path('catalog/', get_catalog, name='catalog')
 ]

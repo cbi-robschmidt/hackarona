@@ -4,6 +4,7 @@ from django.shortcuts import redirect
 
 from django.views import View
 from django.views.generic import ListView, DetailView
+from django.views.generic.base import TemplateView
 
 from scanner.models import ScanPhoto
 
@@ -15,18 +16,14 @@ import requests
 import json
 
 # Create your views here.
-class IndexView(ListView):
-    queryset = ScanPhoto.objects.all()
-    template_name = 'index.html'
-
 class ResultsView(DetailView):
     model = ScanPhoto
     template_name = 'results.html'
 
-def get_catalog(request):
-    if(request.method == "POST") :
+class CatalogView(TemplateView):
+    template_name = 'catalog.html'
+
+    def post(self, request):
         base_url = reverse('catalog')
         query = request.POST['query']
-        return HttpResponseRedirect( base_url + "?query={}".format(query))
-
-    return render(request, 'catalog.html')
+        return HttpResponseRedirect(base_url + '?query={}'.format(query))
