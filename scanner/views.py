@@ -35,7 +35,7 @@ class GetScanData(View):
     def get(self, request, *args, **kwargs):
         # api call urls
         textract_url = 'https://0y0h6tom4a.execute-api.us-east-1.amazonaws.com/get-text'
-        recipes_url = 'https://0y0h6tom4a.execute-api.us-east-1.amazonaws.com/getRecipe'
+        recipes_url = 'https://0y0h6tom4a.execute-api.us-east-1.amazonaws.com/get-recipes'
         spellcheck_url = 'https://api.datamuse.com/words'
 
         # filename is passed as get parameter to the view
@@ -71,11 +71,10 @@ class GetScanData(View):
         # send the list of words to the recipe AWS Lambda function
         getrecipe_response = requests.post(recipes_url, json={'query': words})
         getrecipe_response = getrecipe_response.json()
-        # load the recipe list from the recipe response's body element
-        recipe_body = json.loads(getrecipe_response['body'])
+        print(getrecipe_response)
         recipes = []
         # append each entry as an element in a list
-        for entry in recipe_body:
+        for entry in getrecipe_response:
             recipes.append(entry)
         
         # return the JSON formatted response containing the words and recipes
