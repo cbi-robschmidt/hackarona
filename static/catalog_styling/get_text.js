@@ -36,7 +36,7 @@ $(document).ready(function gatherWords() {
                 if(recipes.body.length != 0)
                     recipeStatus.hide();
                 $.each(recipes.body, function(index, value) {
-                    recipeContainer.append(`<a href=${value['webImage']}><h2>${value['name']}</h2><br /><img src=${value['webImage']} /></a>`);
+                    recipeContainer.append(`<a class="catalog-item" href=${value['webImage']}><h3>${value['name']}</h3><img src=${value['webImage']} /></a>`);
                 });
             }
         });
