@@ -22,6 +22,22 @@
 }
 
 .catalog-item > img {
-    max-height: 250px;
-    max-width: 250px;
+    max-height: 500px;
+    max-width: 500px;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.searchBar {
+    top: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    align-items: stretch;
 }

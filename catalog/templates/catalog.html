@@ -6,12 +6,24 @@
 {% block import %} <link rel="stylesheet" href="{% static "catalog_styling/catalog.css" %}"> {% endblock %}
 
 {% block content %} 
-    <h1> All Recipes: </h1>
+    <div class="header">
+        <h1> All Recipes: {{ url }}</h1>
+
+        <form class="searchBar" method="POST" action="{% url 'catalog' %}">
+            {% csrf_token %}
+            <input id="query" name="query" type="text" placeholder="Search...">
+            <input class="btn btn-primary" type="submit" value="Go!"/>
+        </form>
+    </div>
+
+    {% for datum in data_dump %}
+        {{ datum }}
+    {% endfor %}
 
     <div class="catalog"> 
         {% comment %} Catalog Items Fill into here {% endcomment %}
     </div>
-    <button class="btn-secondary" onclick="loadMore()">More</button>
+    <button id="moreButton" class="btn-secondary" onclick="loadMore()">More</button>
 
     <script src="{% static "catalog_styling/catalog_viewer.js" %}"></script>
 {% endblock %}
