@@ -9,16 +9,20 @@
         <link rel="icon" href="{% static "images/HackaronaLogo.png" %}" type="image/icon type">
         <link rel="stylesheet" href="{% static "base_styling/base.css" %}" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="{% static "base_styling/navbar_scroll.js" %}"></script>
         {% block import %} {% endblock %}
         
     </head>
     <body>
         <div class="wrapper">
             <div class="navbar">
-                <a href="{% url 'index' %}">
+                <a href="{% url 'catalog' %}">
                     <img class="icon" alt="Hackarona Logo, redirect to homepage" src="{%static "images/HackaronaLogo.png" %}">
                 </a>
-                <a class="cbi-link" href="{% url 'scan' %}"> Scan </a>
+                <div class="link-list"> 
+                    <a class="cbi-link" href="{% url 'scan' %}"> Scan </a>
+                    <a class="cbi-link" href="{% url 'catalog' %}"> Browse </a>
+                </div>
             </div>
             <div class="content">
                 {% block content %}
