@@ -10,12 +10,10 @@ $(document).ready(function gatherWords() {
     const loadingText = $("#words-loading");
 
     const scanUrl = SCAN_DATA_URL + "?filename=" + imageNameHeader.text().trim();
-    console.log(scanUrl);
 
     $.getJSON(scanUrl, function(data) {
         // hide the loading notification
         loadingText.hide();
-        console.log(data);
 
         // append each word detected to the container
         $.each(data.words, function (index, value) {
