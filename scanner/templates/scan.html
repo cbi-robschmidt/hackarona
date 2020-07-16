@@ -2,24 +2,34 @@
 {% load static %}
 
 {% block title %}Scan Bottle{% endblock %}
-{% block import %}  
-    <link rel="stylesheet" href="{% static "scan_styling/scan.css" %}" /> 
-{% endblock %}
 
 {% block content %}
-<h1>Please scan your bottle...</h1>
-<br />
-<div class="form-box">
-    <form action={% url 'scan' %} method="POST" enctype="multipart/form-data">
+<div class="columns">
+    <form id="scanform" class="column is-half is-offset-one-quarter" action={% url 'scan' %} method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        <div class="form-row">
-            {{ form }}
-            <label for="id_scan"> Scan Bottle </label>
-        </div>
-        <div class="form-row">
-            <input class="btn btn-primary" type="submit" value="Find Recipes!" />
+        {{ form.non_field_errors }}
+        <div class="field">
+            {{ form.scan.errors }}
+            <div class="file is-primary is-boxed is-large has-text-centered is-fullwidth">
+                <label class="file-label">
+                    <input id="bottlefile" type="file" class="file-input" accept="image/*" name="scan" id="{{ form.scan.id_for_label }}" required>
+                    <span class="file-cta">
+                        <span class="file-icon">
+                            <img src="{% static "images/upload-icon.png" %}"></img>
+                        </span>
+                        <span class="file-label">
+                            Scan a Bottle!
+                        </span>
+                    </span>
+                </label>
+            </div>
         </div>
     </form>
 </div>
-<script src="{% static "scan_styling/scanner.js" %}"></script>
+
+<script type="text/javascript">
+    $('#bottlefile').change(function() {
+        $('#scanform').submit();
+    });
+</script>
 {% endblock %}

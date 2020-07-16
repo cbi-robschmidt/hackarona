@@ -1,0 +1,4 @@
+.recipe-item:focus, .recipe-item:hover {
+    transform: scale(1.1, 1.1);
+    box-shadow: 6px 4px 10px 8px #22222288;
+}
