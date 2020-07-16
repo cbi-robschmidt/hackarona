@@ -196,7 +196,7 @@ LOGGING = {
     'loggers': {
         'django': {
             'handlers': ['console'],
-            'level': 'INFO',
+            'level': 'ERROR',
             'propagate': False,
         },
         'watchtower-logger': {
