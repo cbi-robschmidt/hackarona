@@ -3,7 +3,7 @@ let page = 1;
 $(document).ready(getRecipes);
 
 function addRecipe(column, value) {
-    column.append(`<a id="catalog-item" class="box" href=${value.webImage}><h3 class="subtitle">${value.name}</h3><br /><img src=${value.webImage} /></a>`);
+    column.append(`<a class="box recipe-item" href=${value.webImage}><h3 class="subtitle">${value.name}</h3><br /><img src=${value.webImage} /></a>`);
 }
 
 function getRecipes() {
@@ -33,16 +33,17 @@ function getRecipes() {
                 $("#moreButton").show();
             }
 
-            for (var i = 0; i < recipes.length; i++) {
-                if (i % 4 == 0)
-                    addRecipe(col1, recipes[i]);
-                else if (i % 4 == 1)
-                    addRecipe(col2, recipes[i]);
-                else if (i % 4 == 2)
-                    addRecipe(col3, recipes[i]);
+            $.each(recipes, function (index, value) {
+                console.log('Trying to display ' + value);
+                if (index % 4 == 0)
+                    addRecipe(col1, value);
+                else if (index % 4 == 1)
+                    addRecipe(col2, value);
+                else if (index % 4 == 2)
+                    addRecipe(col3, value);
                 else
-                    addRecipe(col4, recipes[i]);
-            }
+                    addRecipe(col4, value);
+            });
         }
     });
 }

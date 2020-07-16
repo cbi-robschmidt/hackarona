@@ -1,7 +1,7 @@
 const SCAN_DATA_URL = '/scan/get-scan-data/';
 
 function addRecipe(column, value) {
-    column.append(`<a class="box" href=${value.webImage}><h2 class="title">${value.name}</h2><br /><img src=${value.webImage} /></a>`);
+    column.append(`<a class="box recipe-item" href=${value.webImage}><h2 class="title">${value.name}</h2><br /><img src=${value.webImage} /></a>`);
 }
 
 $(document).ready(function gatherWords() {
@@ -33,19 +33,15 @@ $(document).ready(function gatherWords() {
             const col4 = $("#col4");
 
             $.each(data.recipes, function (index, value) {
-                const recipeContainer = $('#recipe-container');
-
-                for (var i = 0; i < recipes.length; i++) {
-                    console.log('Trying to display ' + recipes[i]);
-                    if (i % 4 == 0)
-                        addRecipe(col1, recipes[i]);
-                    else if (i % 4 == 1)
-                        addRecipe(col2, recipes[i]);
-                    else if (i % 4 == 2)
-                        addRecipe(col3, recipes[i]);
-                    else
-                        addRecipe(col4, recipes[i]);
-                }
+                console.log('Trying to display ' + value);
+                if (index % 4 == 0)
+                    addRecipe(col1, value);
+                else if (index % 4 == 1)
+                    addRecipe(col2, value);
+                else if (index % 4 == 2)
+                    addRecipe(col3, value);
+                else
+                    addRecipe(col4, value);
             });
         }
     });

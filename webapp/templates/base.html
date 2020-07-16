@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 {% load static %}
 
-<html>
+<html class="has-navbar-fixed-top">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -15,7 +15,7 @@
         {% block import %} {% endblock %}
     </head>
     <body>
-        <nav class="navbar" role="navigation" aria-label="main navigation">
+        <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
                 <a class="navbar-item is-large" href="{% url 'catalog' %}">
                     <img width="200%" height="200%" alt="Hackarona Logo, redirect to homepage" src="{%static "images/HackaronaLogo.png" %}">
@@ -41,14 +41,14 @@
                 </div>
             </div>
         </nav>
+        {% block precontent %}{% endblock %}
         <section class="section">
             <div class="container">
-                {% block content %}
-                {% endblock %}
+                {% block content %}{% endblock %}
             </div>
         </section>
         <section class="footer">
-            <div class="container has-text-centered">2020 Constellation Brands</div>
+            <div class="container has-text-centered">&copy; 2020 Constellation Brands</div>
         </section>
     </body>
 </html>
