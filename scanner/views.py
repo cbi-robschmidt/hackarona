@@ -14,7 +14,6 @@ import json
 def scan_form_view(request):
     if request.method == 'POST':
         form = UploadScanForm(request.POST, request.FILES)
-        print(form)
         if form.is_valid():
             instance = form.save()
             return redirect('results', pk=str(instance.uuid))

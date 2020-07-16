@@ -10,12 +10,10 @@ $(document).ready(function gatherWords() {
     const loadingText = $("#words-loading");
 
     const scanUrl = SCAN_DATA_URL + "?filename=" + imageNameHeader.text().trim();
-    console.log(scanUrl);
 
     $.getJSON(scanUrl, function(data) {
         // hide the loading notification
         loadingText.hide();
-        console.log(data);
 
         // append each word detected to the container
         $.each(data.words, function (index, value) {
@@ -33,7 +31,6 @@ $(document).ready(function gatherWords() {
             const col4 = $("#col4");
 
             $.each(data.recipes, function (index, value) {
-                console.log('Trying to display ' + value);
                 if (index % 4 == 0)
                     addRecipe(col1, value);
                 else if (index % 4 == 1)

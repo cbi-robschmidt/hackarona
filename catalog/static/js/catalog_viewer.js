@@ -34,7 +34,6 @@ function getRecipes() {
             }
 
             $.each(recipes, function (index, value) {
-                console.log('Trying to display ' + value);
                 if (index % 4 == 0)
                     addRecipe(col1, value);
                 else if (index % 4 == 1)
