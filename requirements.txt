@@ -18,3 +18,4 @@ s3transfer==0.3.3
 six==1.15.0
 sqlparse==0.3.1
 urllib3==1.25.9
+watchtower==0.8.0

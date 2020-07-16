@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+from boto3.session import Session
+import logging
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -151,6 +153,67 @@ AWS_STORAGE_BUCKET_NAME = 'hackarona-product-images'
 AWS_S3_FILE_OVERWRITE = False
 AWS_S3_REGION_NAME = 'us-east-1'
 AWS_DEFAULT_ACL = None
+
+boto3_session = Session(
+    aws_access_key_id=AWS_ACCESS_KEY_ID,
+    aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
+    region_name=AWS_S3_REGION_NAME
+)
+
+
+def is_user_log(record):
+    return record.msg.startswith('User')
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+        'watchtower': {
+            'level': 'INFO',
+            'class': 'watchtower.CloudWatchLogHandler',
+                     'boto3_session': boto3_session,
+                     'log_group': 'HandyBarUserLogs',
+                     'stream_name': 'UserLog',
+            'formatter': 'aws',
+        },
+    },
+    'formatters': {
+        'simple': {
+            'format': u"%(asctime)s [%(levelname)-8s] %(message)s",
+            'datefmt': "%Y-%m-%d %H:%M:%S"
+        },
+        'aws': {
+            'format': u"%(asctime)s [%(levelname)-8s] %(message)s",
+            'datefmt': "%Y-%m-%d %H:%M:%S"
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'WARNING',
+    },
+    'filters': {
+        'user_logs_only': {
+            '()': 'django.utils.log.CallbackFilter',
+            'callback': is_user_log,
+        }
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+        'watchtower-logger': {
+            'handlers': ['watchtower'],
+            'filters': ['user_logs_only'],
+            'level': 'INFO',
+            'propogate': True,
+        },
+    },
+}
 
 BULMA_SETTINGS = {
     "extensions": [
