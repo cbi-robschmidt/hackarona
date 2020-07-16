@@ -3,7 +3,7 @@ let page = 1;
 $(document).ready(getRecipes);
 
 function addRecipe(column, value) {
-    column.append(`<a class="box" href=${value.webImage}><h3 class="subtitle">${value.name}</h3><br /><img src=${value.webImage} /></a>`);
+    column.append(`<a id="catalog-item" class="box" href=${value.webImage}><h3 class="subtitle">${value.name}</h3><br /><img src=${value.webImage} /></a>`);
 }
 
 function getRecipes() {
