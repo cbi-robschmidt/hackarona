@@ -3,8 +3,8 @@ venv/
 *.sqlite3
 *.pyc
 __pycache__/
-scans/
+/scans/
 aws_access_id
 aws_secret_key
 secret_key
-static/
+/static/
