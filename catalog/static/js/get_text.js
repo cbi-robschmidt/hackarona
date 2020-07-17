@@ -40,6 +40,8 @@ $(document).ready(function gatherWords() {
                 else
                     addRecipe(col4, value);
             });
+        } else {
+            $('#recipe-status').text('No Recipes available');
         }
     });
 });

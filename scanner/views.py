@@ -69,14 +69,18 @@ class GetScanData(View):
                 if corrections:
                     words.append(corrections[0]['word'].upper())
                     ret_words.append({'word': entry['word'].upper(), 'score': entry['score']})
-
-        # send the list of words to the recipe AWS Lambda function
-        getrecipe_response = requests.post(recipes_url, json={'query': words})
-        getrecipe_response = getrecipe_response.json()
         recipes = []
-        # append each entry as an element in a list
-        for entry in getrecipe_response:
-            recipes.append(entry)
-        
+       
+        if(words) :
+            #Check all viable pages
+            for page in range(1,9) :
+                # send the list of words to the recipe AWS Lambda function
+                getrecipe_response = requests.post(recipes_url, json={'query': words, 'page': page})
+                getrecipe_response = getrecipe_response.json()
+    
+                # append each entry as an element in a list
+                for entry in getrecipe_response:
+                    recipes.append(entry)
+       
         # return the JSON formatted response containing the words and recipes
         return JsonResponse({'words': ret_words, 'recipes': recipes})

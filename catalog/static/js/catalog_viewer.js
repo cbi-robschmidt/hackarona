@@ -6,7 +6,13 @@ function addRecipe(column, value) {
     column.append(`<a class="box recipe-item" href=${value.webImage}><h3 class="subtitle">${value.name}</h3><br /><img src=${value.webImage} /></a>`);
 }
 
-function getRecipes() {
+async function getRecipes() {
+    if(page >= 9) { //No pages left to search through
+        $("#loadingrecipes").hide();
+        $("#moreButton").hide();
+        $("#endofline").show();
+        return;
+    }
     const catalog = $("#recipe-catalog");
 
     const col1 = $("#col1");
@@ -25,8 +31,8 @@ function getRecipes() {
         success: function(data) {
             const recipes = JSON.parse(data);
             if(recipes.length == 0) {
-                $("#moreButton").hide();
-                $("#endofline").show();
+                loadMore(); //If no results, check next page
+                return;
             }
             else {
                 $("#loadingrecipes").hide();
@@ -49,6 +55,6 @@ function getRecipes() {
 
 function loadMore() {
     page += 1;
-    getRecipes();
     $("#loadingrecipes").show();
+    getRecipes();
 }
